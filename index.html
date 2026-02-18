@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order System</title>
+</head>
+<body>
+
+<h2>Add Order</h2>
+<input id="customer" placeholder="Customer">
+<input id="item" placeholder="Item">
+<input id="qty" type="number" placeholder="Qty">
+<input id="price" type="number" placeholder="Price">
+<button onclick="addOrder()">Submit Order</button>
+
+<h2>Add Payment</h2>
+<input id="pcustomer" placeholder="Customer">
+<input id="amount" type="number" placeholder="Amount">
+<input id="method" placeholder="Method">
+<button onclick="addPayment()">Submit Payment</button>
+
+<script>
+const API = "PASTE_YOUR_WEB_APP_URL_HERE";
+
+function addOrder() {
+  fetch(API, {
+    method: "POST",
+    body: JSON.stringify({
+      type: "order",
+      customer: customer.value,
+      item: item.value,
+      qty: qty.value,
+      price: price.value
+    })
+  }).then(() => alert("Order added"));
+}
+
+function addPayment() {
+  fetch(API, {
+    method: "POST",
+    body: JSON.stringify({
+      type: "payment",
+      customer: pcustomer.value,
+      amount: amount.value,
+      method: method.value,
+      note: ""
+    })
+  }).then(() => alert("Payment added"));
+}
+</script>
+
+</body>
+</html>
